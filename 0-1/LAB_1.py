@@ -28,11 +28,9 @@ import numpy as np
 
 
 #task2 :
-I = plt.imread('/Users/hossein/Desktop/CV/0-1/cv-lab1/masoleh_gray.jpg')
-I_inverted = I[::-1, :]
-#plt.imshow(I_inverted)
 
-concatenated_image = np.concatenate((I, I_inverted), axis=0)
-plt.imshow(concatenated_image, cmap='gray')
-plt.show()
-print(I)
+# I = plt.imread('/Users/hossein/Desktop/CV/0-1/cv-lab1/masoleh_gray.jpg')
+# I_inverted = I[::-1, :]
+# concatenated_image = np.concatenate((I, I_inverted), axis=0)
+# plt.imshow(concatenated_image, cmap='gray')
+# plt.show()
