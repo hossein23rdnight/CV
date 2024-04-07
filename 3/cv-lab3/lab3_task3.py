@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-I = cv2.imread("/Users/hossein/Desktop/CV/3/cv-lab3/crayfish.jpg", cv2.IMREAD_GRAYSCALE)
+I = cv2.imread("/Users/hossein/Desktop/CV/3/cv-lab3/pasargadae.jpg", cv2.IMREAD_GRAYSCALE)
 
 levels = 256
 
@@ -24,9 +24,6 @@ def calc_cdf(hist, levels):
     for i in range(1, levels):
         cdf[i] = cdf[i-1] + hist[i]
     return cdf
-
-hist = calc_hist(I, levels)
-cdf = calc_cdf(hist, levels)
 
 # normalize CDF
 def normalize_cdf(cdf, total_pixels):
@@ -53,10 +50,16 @@ def replace_intensity(I, mapping):
 
 
 
+hist = calc_hist(I, levels)
+cdf = calc_cdf(hist, levels)
+
+
 total_pixels = np.sum(hist)
 normalized_cdf = normalize_cdf(cdf, total_pixels)
 mapping = create_mapping(normalized_cdf)
 equalized_image = replace_intensity(I, mapping)
+
+
 equalized_image_hist = calc_hist(equalized_image, levels)
 equalized_image_cdf = calc_cdf(equalized_image_hist, levels)
 

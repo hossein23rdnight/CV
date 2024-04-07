@@ -7,8 +7,6 @@ w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)) 
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-
-
 out = cv2.VideoWriter('eggs-reverse.avi',fourcc, 30.0, (w,h))
 
 
@@ -16,11 +14,12 @@ buffer = []
 while True:
     ret, I = cap.read()
 
-    if ret == False: # end of video (or error)
+    if ret == False: 
         break
     
     buffer.append(I)
 
+#r = buffer[::-1].copy()
 buffer.reverse()
 for frame in buffer:
     out.write(frame)
