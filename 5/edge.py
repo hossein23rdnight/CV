@@ -3,12 +3,12 @@ import cv2
 from matplotlib import pyplot as plt
 
 def std_filter(I, ksize):
-    F = np.ones((ksize,ksize), dtype=np.float) / (ksize*ksize);
+    F = np.ones((ksize,ksize), dtype=float) / (ksize*ksize);
        
-    MI = cv2.filter2D(I,-1,F) # apply mean filter on I
+    MI = cv2.filter2D(I,-1,F) 
 
-    I2 = I * I; # I squared
-    MI2 = cv2.filter2D(I2,-1,F) # apply mean filter on I2
+    I2 = I * I;
+    MI2 = cv2.filter2D(I2,-1,F) 
 
     return np.sqrt(MI2 - MI * MI)
 
@@ -22,19 +22,18 @@ def zero_crossing(I):
     Ishdy = I.copy();
     Ishdy[1:,:] = Ishdy[:-1,:]
         
-    ZC = (I==0) | (I * Ishrx < 0) | (I * Ishdy < 0); # zero crossing locations
+    ZC = (I==0) | (I * Ishrx < 0) | (I * Ishdy < 0); 
 
     SI = std_filter(I, 3) / I.max()
 
     Mask =  ZC & (SI > .1)
 
-    E = Mask.astype(np.uint8) * 255 # the edges
+    E = Mask.astype(np.uint8) * 255 
 
     return E
     
-I = cv2.imread("agha-bozorg.jpg", cv2.IMREAD_GRAYSCALE)
+I = cv2.imread("/Users/hossein/Desktop/CV/5/agha-bozorg.jpg", cv2.IMREAD_GRAYSCALE)
 
-# set the sigma for Gaussian Blurring
 sigma = 7
 
 # Sobel magnitude of gradient 
@@ -53,8 +52,8 @@ El = cv2.Laplacian(Ib,cv2.CV_64F,ksize=5)
 El = zero_crossing(El);
 
 # Canny Edge detector
-lth = 50   # low threshold
-hth = 120  # high threshold
+lth = 20   # low threshold
+hth = 90 # high threshold
 Ib = cv2.GaussianBlur(I, (sigma,sigma), 0); # blur the image
 Ec = cv2.Canny(Ib,lth, hth)
 

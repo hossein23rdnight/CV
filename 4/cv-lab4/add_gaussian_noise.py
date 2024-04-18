@@ -5,7 +5,9 @@ import cv2
 
 I = cv2.imread('/Users/hossein/Desktop/CV/4/cv-lab4/isfahan.jpg');
 
+#print(I.dtype)
 I = I.astype(float) / 255
+#print(I.dtype)
 
 sigma = 0.4 
 N = np.random.randn(*I.shape) * sigma

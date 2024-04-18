@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 from matplotlib import pyplot as plt
 
-I = cv2.imread("agha-bozorg.jpg", cv2.IMREAD_GRAYSCALE)
+I = cv2.imread("/Users/hossein/Desktop/CV/5/agha-bozorg.jpg", cv2.IMREAD_GRAYSCALE)
 
 # Sobel gradient in the x direction
 Ix = cv2.Sobel(I,cv2.CV_64F,1,0)
